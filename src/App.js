@@ -4,6 +4,8 @@ import CustomCard from "./components/customCard";
 import CustomCardtwo from "./components/customCardTwo";
 import Middle from "./components/middle";
 
+//github 데스크탑으로 옮김
+
 function App() {
   const [cardDesc, setCardDesc] = useState([
     { id: 1, desc: "리액트", subDesc: "리액트 공부", comp: "0" },
