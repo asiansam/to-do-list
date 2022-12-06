@@ -1,0 +1,14 @@
+.layoutStyles {
+  min-width: 800px;
+  max-width: 1200px;
+  height: 1200px;
+
+  margin-left: auto;
+  margin-right: auto;
+}
+.working {
+  width: 100%;
+  height: 50px;
+  font-size: 30px;
+  font-weight: bold;
+}
