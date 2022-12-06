@@ -1,7 +1,6 @@
-import CustomCard from "../components/list/list";
-import CustomCardtwo from "../components/todo/todo";
-import Form from "../components/form/form";
-import "../components/form/form.css";
+import Form from "../components/form/Form";
+import List from "../components/list/List";
+import Todo from "../components/todo/Todo";
 
 //github 데스크탑으로 옮김
 
@@ -14,9 +13,9 @@ function Box() {
     <div>
       <Form></Form>
       <div className="working">working..🔥</div>
-      <CustomCard></CustomCard>
+      <List></List>
       <div className="working">Done...!🎉</div>
-      <CustomCardtwo></CustomCardtwo>
+      <Todo></Todo>
     </div>
   );
 }

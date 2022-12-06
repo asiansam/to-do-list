@@ -1,38 +1,38 @@
-import "./list.css";
+import "./List.css";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { deletecard } from "../../redux/modules/todomod";
-import { moveCard } from "../../redux/modules/todomod";
+import { deletecard } from "../../redux/modules/TodoMod";
+import { moveCard } from "../../redux/modules/TodoMod";
 import { Link } from "react-router-dom";
 
-const CustomCard = () => {
-  const todos = useSelector((state) => state.todos.todos);
+const List = () => {
+  const 카드데이터 = useSelector((state) => state.todos.todos);
   const dispatch = useDispatch();
 
-  const deletec = (id) => {
-    console.log(id);
-    dispatch(deletecard(id));
+  const 카드지우기 = (아이디) => {
+    console.log(아이디);
+    dispatch(deletecard(아이디));
   };
 
-  const movecards = (id) => {
-    console.log(id);
-    dispatch(moveCard(id));
+  const 카드완료이동 = (아이디) => {
+    console.log(아이디);
+    dispatch(moveCard(아이디));
   };
   return (
-    <div className="box-container">
-      {todos.map((descs) => {
-        if (descs.comp === true) {
+    <div className="box-Container">
+      {카드데이터.map((파라미터) => {
+        if (파라미터.완료 === true) {
           return (
-            <div className="card-box" key={descs.id}>
-              <Link to={`/${descs.id}`} className="details">
+            <div className="card-Box" key={파라미터.아이디}>
+              <Link to={`/${파라미터.아이디}`} className="details">
                 자세히보기
               </Link>
-              <div className="card-desc">{descs.desc}</div>
-              <div className="card-desc-sub">{descs.subDesc}</div>
+              <div className="card-Desc">{파라미터.제목}</div>
+              <div className="card-Desc-Sub">{파라미터.설명}</div>
               <button
                 className="remove"
                 onClick={() => {
-                  deletec(descs.id);
+                  카드지우기(파라미터.아이디);
                 }}
               >
                 삭제하기
@@ -40,7 +40,7 @@ const CustomCard = () => {
               <button
                 className="comp"
                 onClick={() => {
-                  movecards(descs.id);
+                  카드완료이동(파라미터.아이디);
                 }}
               >
                 완료하기
@@ -55,4 +55,4 @@ const CustomCard = () => {
   );
 };
 
-export default CustomCard;
+export default List;

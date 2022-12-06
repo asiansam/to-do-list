@@ -1,39 +1,39 @@
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { deletecard } from "../../redux/modules/todomod";
-import { cancelCard } from "../../redux/modules/todomod";
+import { deletecard } from "../../redux/modules/TodoMod";
+import { cancelCard } from "../../redux/modules/TodoMod";
 import { Link } from "react-router-dom";
 
-const CustomCardtwo = () => {
-  const todos = useSelector((state) => state.todos.todos);
+const Todo = () => {
+  const 카드데이터 = useSelector((state) => state.todos.todos);
 
-  const dispatch = useDispatch();
+  const 액션넘겨주기 = useDispatch();
 
-  const deletec = (id) => {
-    console.log(id);
-    dispatch(deletecard(id));
+  const 카드지우기 = (아이디) => {
+    console.log(아이디);
+    액션넘겨주기(deletecard(아이디));
   };
 
-  const cancelcard = (id) => {
-    console.log(id);
-    dispatch(cancelCard(id));
+  const 카드취소하기 = (아이디) => {
+    console.log(아이디);
+    액션넘겨주기(cancelCard(아이디));
   };
 
   return (
-    <div className="box-container">
-      {todos.map((descs) => {
-        if (descs.comp === false) {
+    <div className="box-Container">
+      {카드데이터.map((파라미터) => {
+        if (파라미터.완료 === false) {
           return (
-            <div className="card-box" key={descs.id}>
-              <Link to={`/${descs.id}`} className="details">
+            <div className="card-Box" key={파라미터.아이디}>
+              <Link to={`/${파라미터.아이디}`} className="details">
                 자세히보기
               </Link>
-              <div className="card-desc">{descs.desc}</div>
-              <div className="card-desc-sub">{descs.subDesc}</div>
+              <div className="card-Desc">{파라미터.제목}</div>
+              <div className="card-Desc-Sub">{파라미터.설명}</div>
               <button
                 className="remove"
                 onClick={() => {
-                  deletec(descs.id);
+                  카드지우기(파라미터.아이디);
                 }}
               >
                 삭제하기
@@ -41,7 +41,7 @@ const CustomCardtwo = () => {
               <button
                 className="comp"
                 onClick={() => {
-                  cancelcard(descs.id);
+                  카드취소하기(파라미터.아이디);
                 }}
               >
                 취소
@@ -56,4 +56,4 @@ const CustomCardtwo = () => {
   );
 };
 
-export default CustomCardtwo;
+export default Todo;

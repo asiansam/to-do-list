@@ -1,27 +1,27 @@
-import "./form.css";
+import "./Form.css";
 
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addTodo } from "../../redux/modules/todomod";
+import { addCard } from "../../redux/modules/TodoMod";
 
 const Form = () => {
-  const [title, setTitle] = useState("");
-  const [wish, setWish] = useState("");
+  const [타이틀, set타이틀변경] = useState("");
+  const [내용, set내용변경] = useState("");
 
-  const todos = useSelector((state) => state.todos.todos);
-  console.log(todos);
-  const dispatch = useDispatch();
+  const 카드데이터 = useSelector((state) => state.todos.todos);
+  console.log(카드데이터);
+  const 액션을넘겨주기 = useDispatch();
 
-  const onSubmitHandler = (e) => {
+  const 추가하기기능 = (e) => {
     e.preventDefault();
-    if (title === "") return; // 아무것도 입력하지 않았을 때 dispatch 하지 않음
+    if (타이틀 === "") return; // 아무것도 입력하지 않았을 때 dispatch 하지 않음
 
-    dispatch(
-      addTodo({
-        id: todos.length + 1,
-        desc: title,
-        subDesc: wish,
-        comp: true,
+    액션을넘겨주기(
+      addCard({
+        아이디: 카드데이터.length + 1,
+        제목: 타이틀,
+        설명: 내용,
+        완료: true,
       })
     );
   };
@@ -30,16 +30,16 @@ const Form = () => {
       <p className="title">제목</p>
       <input
         className="input"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
+        value={타이틀}
+        onChange={(e) => set타이틀변경(e.target.value)}
       ></input>
       <p className="title">내용</p>
       <input
         className="input"
-        value={wish}
-        onChange={(e) => setWish(e.target.value)}
+        value={내용}
+        onChange={(e) => set내용변경(e.target.value)}
       ></input>
-      <button className="button" onClick={onSubmitHandler}>
+      <button className="button" onClick={추가하기기능}>
         추가하기
       </button>
     </div>

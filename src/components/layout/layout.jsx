@@ -1,6 +1,6 @@
 import React from "react";
-import Header from "../header/header";
-import "./layout.css";
+import Header from "../header/Header";
+import "./Layout.css";
 import { useLocation } from "react-router-dom";
 
 function Layout({ children }) {

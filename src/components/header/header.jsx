@@ -1,7 +1,7 @@
 // src/shared/Layout.js
 
 import React from "react";
-import "./header.css";
+import "./Header.css";
 
 function Header() {
   return (

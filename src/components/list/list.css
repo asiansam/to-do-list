@@ -1,22 +1,22 @@
-.card-box {
+.card-Box {
   width: 300px;
   height: 200px;
   margin: 10px;
   border: solid #008080;
   border-radius: 20px;
 }
-.box-container {
+.box-Container {
   display: flex;
   flex-wrap: wrap;
   height: fit-content;
 }
-.card-desc {
+.card-Desc {
   margin-top: 10px;
   margin-left: 20px;
   font-weight: bold;
   font-size: 25px;
 }
-.card-desc-sub {
+.card-Desc-Sub {
   margin-top: 30px;
   margin-left: 20px;
 }

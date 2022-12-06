@@ -1,37 +1,37 @@
 // Action value
-const ADD_TODO = "ADD_TODO";
+const ADD_CARD = "ADD_TODO";
 const DELETE_CARD = "DELETE_CARD";
 const MOVE_CARD = "MOVE_CARD";
 const CANCEL_CARD = "CANCEL_CARD";
 
 // Action Creator
-export const addTodo = (payload) => {
-  return { type: ADD_TODO, payload };
+export const addCard = (payload) => {
+  return { type: ADD_CARD, payload };
 };
-export const deletecard = (id) => {
-  return { type: DELETE_CARD, id };
+export const deletecard = (아이디) => {
+  return { type: DELETE_CARD, 아이디 };
 };
 
-export const moveCard = (id) => {
-  return { type: MOVE_CARD, id };
+export const moveCard = (아이디) => {
+  return { type: MOVE_CARD, 아이디 };
 };
-export const cancelCard = (id) => {
-  return { type: CANCEL_CARD, id };
+export const cancelCard = (아이디) => {
+  return { type: CANCEL_CARD, 아이디 };
 };
 // initial State
 const initialState = {
   todos: [
     {
-      id: 1,
-      desc: "리액트",
-      subDesc: "리액트 공부",
-      comp: true,
+      아이디: 1,
+      제목: "리액트",
+      설명: "리액트 공부",
+      완료: true,
     },
     {
-      id: 2,
-      desc: "노드",
-      subDesc: "노드 공부",
-      comp: true,
+      아이디: 2,
+      제목: "노드",
+      설명: "노드 공부",
+      완료: true,
     },
   ],
 };
@@ -39,29 +39,33 @@ const initialState = {
 // Reducer
 const todos = (state = initialState, action) => {
   switch (action.type) {
-    case ADD_TODO:
+    case ADD_CARD:
       return {
         ...state,
         todos: [...state.todos, action.payload],
       };
     case DELETE_CARD:
-      const newCardList = state.todos.filter((item) => item.id !== action.id);
+      const newCardList = state.todos.filter(
+        (item) => item.아이디 !== action.아이디
+      );
       return {
         todos: newCardList,
       };
     case MOVE_CARD:
-      let findIndex = state.todos.findIndex((item) => item.id === action.id);
+      let findIndex = state.todos.findIndex(
+        (item) => item.아이디 === action.아이디
+      );
       let copiedItems = [...state.todos];
-      copiedItems[findIndex].comp = false;
+      copiedItems[findIndex].완료 = false;
       return {
         todos: copiedItems,
       };
     case CANCEL_CARD:
       let findcancelIndex = state.todos.findIndex(
-        (item) => item.id === action.id
+        (item) => item.아이디 === action.아이디
       );
       let copiedcancelItems = [...state.todos];
-      copiedcancelItems[findcancelIndex].comp = true;
+      copiedcancelItems[findcancelIndex].완료 = true;
       return {
         todos: copiedcancelItems,
       };
