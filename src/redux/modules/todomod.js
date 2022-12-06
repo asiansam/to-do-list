@@ -5,8 +5,8 @@ const MOVE_CARD = "MOVE_CARD";
 const CANCEL_CARD = "CANCEL_CARD";
 
 // Action Creator
-export const addCard = (payload) => {
-  return { type: ADD_CARD, payload };
+export const addCard = (새로만든카드데이터) => {
+  return { type: ADD_CARD, 새로만든카드데이터 };
 };
 export const deletecard = (아이디) => {
   return { type: DELETE_CARD, 아이디 };
@@ -42,7 +42,7 @@ const todos = (state = initialState, action) => {
     case ADD_CARD:
       return {
         ...state,
-        todos: [...state.todos, action.payload],
+        todos: [...state.todos, action.새로만든카드데이터],
       };
     case DELETE_CARD:
       const newCardList = state.todos.filter(
