@@ -1,59 +1,67 @@
+// src/pages/Work.js
+
+import React from "react";
 import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
-import { deletecard } from "../../redux/modules/TodoMod";
-import { cancelCard } from "../../redux/modules/TodoMod";
+import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
 
-const Todo = () => {
+function Detail() {
   const 카드데이터 = useSelector((state) => state.todos.todos);
+  const 주소아이디객체 = useParams();
 
-  const 액션넘겨주기 = useDispatch();
-
-  const 카드지우기 = (아이디) => {
-    console.log(아이디);
-    액션넘겨주기(deletecard(아이디));
-  };
-
-  const 카드취소하기 = (아이디) => {
-    console.log(아이디);
-    액션넘겨주기(cancelCard(아이디));
-  };
+  const 들어온카드 = 카드데이터.find(
+    (파라미터) => 파라미터.아이디 === parseInt(주소아이디객체.id)
+  );
 
   return (
-    <div className="box-Container">
-      {카드데이터.map((파라미터) => {
-        if (파라미터.완료 === false) {
-          return (
-            <div className="card-Box" key={파라미터.아이디}>
-              <Link to={`/${파라미터.아이디}`} className="details">
-                자세히보기
-              </Link>
-              <div className="card-Desc">{파라미터.제목}</div>
-              <div className="card-Desc-Sub">{파라미터.설명}</div>
-              <button
-                className="remove"
-                onClick={() => {
-                  카드지우기(파라미터.아이디);
-                }}
-              >
-                삭제하기
-              </button>
-              <button
-                className="comp"
-                onClick={() => {
-                  카드취소하기(파라미터.아이디);
-                }}
-              >
-                취소
-              </button>
-            </div>
-          );
-        } else {
-          return null;
-        }
-      })}
-    </div>
+    <MiddleBox>
+      <Link to="/">
+        <GoBack>돌아가기</GoBack>
+      </Link>
+      <Id>id:{들어온카드.아이디}</Id>
+      <Desc>{들어온카드.제목}</Desc>
+      <SubDesc>{들어온카드.설명}</SubDesc>
+    </MiddleBox>
   );
-};
+}
 
-export default Todo;
+const MiddleBox = styled.div`
+  width: 60%;
+  height: 300px;
+  position: relative;
+  margin-top: 300px;
+  border: solid white;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: auto;
+  align-items: center;
+  border-radius: 30px;
+  background-color: blanchedalmond;
+`;
+const Id = styled.div`
+  margin-top: 50px;
+  margin-left: 40px;
+  font-size: 30px;
+`;
+const Desc = styled.div`
+  margin-top: 30px;
+  margin-left: 50px;
+  font-weight: bold;
+  font-size: 25px;
+`;
+const SubDesc = styled.div`
+  margin-top: 20px;
+  margin-left: 50px;
+  font-size: 40px;
+`;
+const GoBack = styled.button`
+  float: right;
+  margin: 25px;
+  width: 130px;
+  height: 50px;
+  border-radius: 10px;
+  font-size: 20px;
+  font-weight: bold;
+`;
+export default Detail;

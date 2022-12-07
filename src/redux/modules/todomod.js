@@ -2,7 +2,6 @@
 const ADD_CARD = "ADD_TODO";
 const DELETE_CARD = "DELETE_CARD";
 const MOVE_CARD = "MOVE_CARD";
-const CANCEL_CARD = "CANCEL_CARD";
 
 // Action Creator
 export const addCard = (새로만든카드데이터) => {
@@ -17,9 +16,6 @@ export const moveCard = (아이디) => {
   return { type: MOVE_CARD, 아이디 };
 };
 
-export const cancelCard = (아이디) => {
-  return { type: CANCEL_CARD, 아이디 };
-};
 // initial State
 const initialState = {
   todos: [
@@ -34,6 +30,12 @@ const initialState = {
       제목: "노드",
       설명: "노드 공부",
       완료: true,
+    },
+    {
+      아이디: 3,
+      제목: "파이썬",
+      설명: "파이썬 공부",
+      완료: false,
     },
   ],
 };
@@ -58,18 +60,12 @@ const todos = (state = initialState, action) => {
         (item) => item.아이디 === action.아이디
       );
       let copiedItems = [...state.todos];
-      copiedItems[findIndex].완료 = false;
+      copiedItems[findIndex].완료 === true
+        ? (copiedItems[findIndex].완료 = false)
+        : (copiedItems[findIndex].완료 = true);
+      console.log(copiedItems[findIndex].완료);
       return {
         todos: copiedItems,
-      };
-    case CANCEL_CARD:
-      let findcancelIndex = state.todos.findIndex(
-        (item) => item.아이디 === action.아이디
-      );
-      let copiedcancelItems = [...state.todos];
-      copiedcancelItems[findcancelIndex].완료 = true;
-      return {
-        todos: copiedcancelItems,
       };
     default:
       return state;

@@ -5,9 +5,10 @@ import { deletecard } from "../../redux/modules/TodoMod";
 import { moveCard } from "../../redux/modules/TodoMod";
 import { Link } from "react-router-dom";
 
-const List = () => {
+const List = ({ isDone }) => {
   const 카드데이터 = useSelector((state) => state.todos.todos);
   const dispatch = useDispatch();
+  console.log(isDone);
 
   const 카드지우기 = (아이디) => {
     console.log(아이디);
@@ -18,10 +19,11 @@ const List = () => {
     console.log(아이디);
     dispatch(moveCard(아이디));
   };
+
   return (
     <div className="box-Container">
       {카드데이터.map((파라미터) => {
-        if (파라미터.완료 === true) {
+        if (파라미터.완료 === isDone) {
           return (
             <div className="card-Box" key={파라미터.아이디}>
               <Link to={`/${파라미터.아이디}`} className="details">
@@ -43,12 +45,10 @@ const List = () => {
                   카드완료이동(파라미터.아이디);
                 }}
               >
-                완료하기
+                {파라미터.완료 === true ? "완료" : "취소"}
               </button>
             </div>
           );
-        } else {
-          return null;
         }
       })}
     </div>
