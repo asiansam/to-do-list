@@ -8,6 +8,7 @@ const CANCEL_CARD = "CANCEL_CARD";
 export const addCard = (새로만든카드데이터) => {
   return { type: ADD_CARD, 새로만든카드데이터 };
 };
+
 export const deletecard = (아이디) => {
   return { type: DELETE_CARD, 아이디 };
 };
@@ -15,6 +16,7 @@ export const deletecard = (아이디) => {
 export const moveCard = (아이디) => {
   return { type: MOVE_CARD, 아이디 };
 };
+
 export const cancelCard = (아이디) => {
   return { type: CANCEL_CARD, 아이디 };
 };
